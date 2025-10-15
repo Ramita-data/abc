@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DreamPop Therapy — Relaxing Bubble Game</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#9b59b6">
+
+  <!-- PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID"></script>
+</head>
+<body>
+  <h1>🌈 DreamPop Therapy</h1>
+  <p>Pop bubbles, relax your mind, and support us!</p>
+
+  <canvas id="gameCanvas" width="400" height="600"></canvas>
+
+  <div id="paypal-button-container"></div>
+
+  <script src="app.js"></script>
+  <script src="service-worker.js"></script>
+
+  <script>
+    // PayPal Smart Button
+    paypal.Buttons({
+      createOrder: (data, actions) => actions.order.create({
+        purchase_units: [{ amount: { value: '1.00' } }]
+      }),
+      onApprove: (data, actions) => actions.order.capture().then(() => alert('💜 Thank you for your support!'))
+    }).render('#paypal-button-container');
+
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(reg => console.log("Service Worker registered:", reg))
+        .catch(err => console.error("SW registration failed:", err));
+    }
+  </script>
+</body>
+</html>
