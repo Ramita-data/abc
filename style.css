@@ -1,0 +1,23 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #9b59b6, #8e44ad);
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+canvas {
+  border: 2px solid white;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#paypal-button-container {
+  margin-top: 20px;
+}
